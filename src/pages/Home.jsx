@@ -4,9 +4,9 @@ export const Home = () => {
   return (
     <div>
       <Header />
-      <div className="relative w-full">
-        <img src={back}></img>
-        <h2 className="uppercase absolute w-1/2 top-6 left-1/3 transform -translate-x-1/6  font-workout font-extrabold text-4xl  sm:text-8xl  tracking-widest text-orange-400">
+      <div className="relative w-full flex justify-center">
+        <img src={back} className="w-10/12"></img>
+        <h2 className="uppercase absolute top-6 xl:top-11 font-workout font-extrabold text-4xl sm:text-7xl lg:text-8xl mix-blend-multiply tracking-widest  bg-gradient-to-t from-orange-400 to-orange-600 bg-clip-text text-transparent">
           Workout
         </h2>
       </div>
