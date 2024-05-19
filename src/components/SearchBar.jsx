@@ -1,4 +1,7 @@
+import { useEffect } from 'react';
+
 const SearchBar = () => {
+  useEffect(() => {}, []);
   return (
     <div className="w-full flex justify-center items-center bg-slate-100 h-20">
       <form className="flex gap-6 w-full justify-center h-8">
