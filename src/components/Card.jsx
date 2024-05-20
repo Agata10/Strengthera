@@ -1,4 +1,5 @@
-const Card = ({ id, gifUrl, name, bodyPart, target }) => {
+const Card = ({ exercise }) => {
+  const { id, gifUrl, name, bodyPart, target } = exercise;
   return (
     <div id={id}>
       <img src={gifUrl} alt={name} />

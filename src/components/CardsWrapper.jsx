@@ -1,8 +1,9 @@
 import Card from './Card';
 const CardsWrapper = ({ exercises }) => {
-  const exercisesData = exercises.map((e) => {
-    <Card key={e.id} exercise={e} />;
+  let exercisesData = exercises.map((e) => {
+    return <Card key={e.id} exercise={e} />;
   });
+
   return <div>{exercisesData}</div>;
 };
 

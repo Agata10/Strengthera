@@ -1,8 +1,7 @@
-import { useEffect, useRef, useState } from 'react';
+import { useState } from 'react';
 import axios from 'axios';
-const SearchBar = () => {
+const SearchBar = ({ setExercises }) => {
   const [searchInput, setSearchInput] = useState('');
-  const [exercises, setExercises] = useState('');
 
   const getExercises = async () => {
     const options = {
