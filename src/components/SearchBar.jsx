@@ -26,8 +26,8 @@ const SearchBar = ({ setExercises }) => {
             exercise.target.includes(searchInput) ||
             exercise.equipment.includes(searchInput)
         );
-        console.log(filterData);
         setExercises(filterData);
+        setSearchInput('');
         return filterData;
       }
     } catch (error) {
