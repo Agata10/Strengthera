@@ -18,7 +18,7 @@ const SearchBar = () => {
       },
     };
     try {
-      if (searchInput) {
+      if (searchInput.length > 0) {
         const response = await axios.request(options);
         const filterData = response.data.filter(
           (exercise) =>
