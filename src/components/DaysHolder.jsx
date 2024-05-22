@@ -1,4 +1,8 @@
-import { useContext, useRef } from 'react';
+import { useContext, useState } from 'react';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
+import 'swiper/css/pagination';
+import { Pagination } from 'swiper/modules';
 import { WorkoutContext } from '../pages/Workouts';
 
 const days = [
@@ -72,17 +76,43 @@ const DaysHolder = () => {
   });
   return (
     <div>
-      <div className="flex gap-3">
+      <Swiper
+        className="flex gap-3 w-full mySwiper relative h-16 px-20"
+        spaceBetween={10}
+        slidesPerView={7}
+        breakpoints={{
+          300: {
+            slidesPerView: 1,
+            spaceBetween: 100,
+          },
+          540: {
+            slidesPerView: 2,
+            spaceBetween: 80,
+          },
+          768: {
+            slidesPerView: 3,
+            spaceBetween: 80,
+          },
+          1024: {
+            slidesPerView: 5,
+            spaceBetween: 80,
+          },
+        }}
+        modules={[Pagination]}
+        pagination={{
+          clickable: true,
+        }}
+      >
         {days.map((d) => (
-          <div
+          <SwiperSlide
             key={d}
-            className="cursor-pointer h-10 w-24 border-orange-500 border-2"
+            className="cursor-pointer h-10 border-orange-500 border-2 w-24"
             onClick={() => handleGetExericses(d)}
           >
             {d}
-          </div>
+          </SwiperSlide>
         ))}
-      </div>
+      </Swiper>
       <div className="h-3/6">
         <h2>{day}</h2>
         <ol className="px-4 list-decimal">{workoutThatDay}</ol>
