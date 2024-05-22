@@ -1,4 +1,5 @@
 import Card from './Card';
+
 const CardsWrapper = ({ exercises }) => {
   let exercisesData = exercises.map((e) => {
     return <Card key={e.id} exercise={e} />;

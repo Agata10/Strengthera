@@ -1,24 +1,14 @@
 import { useState } from 'react';
 import axios from 'axios';
+import { exercisesOptions } from '../utils/fetchData';
+
 const SearchBar = ({ setExercises }) => {
   const [searchInput, setSearchInput] = useState('');
 
   const getExercises = async () => {
-    const options = {
-      method: 'GET',
-      url: `https://exercisedb.p.rapidapi.com/exercises`,
-      params: {
-        offset: '0',
-        limit: '500',
-      },
-      headers: {
-        'x-rapidapi-key': import.meta.env.VITE_API_KEY,
-        'x-rapidapi-host': 'exercisedb.p.rapidapi.com',
-      },
-    };
     try {
       if (searchInput.length > 0) {
-        const response = await axios.request(options);
+        const response = await axios.request(exercisesOptions);
         const filterData = response.data.filter(
           (exercise) =>
             exercise.name.includes(searchInput) ||
