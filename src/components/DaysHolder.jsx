@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, useRef } from 'react';
 import { WorkoutContext } from '../pages/Workouts';
 
 const days = [
@@ -13,6 +13,7 @@ const days = [
 
 const DaysHolder = () => {
   const { day, setDay, workout, dispatch } = useContext(WorkoutContext);
+
   const handleGetExericses = (d) => {
     dispatch({ type: 'GET_EXERCISE', payload: { day: d } });
     setDay(d);
@@ -25,8 +26,50 @@ const DaysHolder = () => {
     });
   };
 
-  const handleSets = () => {};
-  const handleReps = () => {};
+  const handleSets = (day, name, sets) => {
+    dispatch({
+      type: 'UPDATE_SETS',
+      payload: { day: day, exercise_name: name, value: sets },
+    });
+  };
+  const handleReps = (day, name, reps) => {
+    console.log(name);
+    dispatch({
+      type: 'UPDATE_REPS',
+      payload: { day: day, exercise_name: name, value: reps },
+    });
+  };
+
+  const workoutThatDay = workout.map((days) => {
+    if (days.day === day) {
+      const exercises = days.exercises.map((exercise) => {
+        if (!exercise) return null;
+        return (
+          <li key={exercise.name}>
+            <span>{exercise.name}</span>
+            <input
+              placeholder={exercise.sets}
+              onBlur={(e) =>
+                handleSets(day, exercise.name, Number(e.target.value))
+              }
+            />
+            <span>sets</span>
+            <input
+              placeholder={exercise.reps}
+              onBlur={(e) =>
+                handleReps(day, exercise.name, Number(e.target.value))
+              }
+            />
+            <span>reps</span>
+            <button onClick={() => handleDelete(day, exercise.name)}>
+              delete
+            </button>
+          </li>
+        );
+      });
+      return exercises;
+    }
+  });
   return (
     <div>
       <div className="flex gap-3">
@@ -42,28 +85,7 @@ const DaysHolder = () => {
       </div>
       <div className="h-3/6">
         <h2>{day}</h2>
-        <ol className="px-4 list-decimal">
-          {workout.map((days) => {
-            if (days.day === day) {
-              const exercises = days.exercises.map((e) => {
-                if (!e) return null;
-                return (
-                  <li key={e.name}>
-                    <span>{e.name}</span>
-                    <input placeholder={e.sets} onChange={handleSets} />
-                    <span>sets</span>
-                    <input placeholder={e.reps} onChange={handleReps} />
-                    <span>reps</span>
-                    <button onClick={() => handleDelete(day, e.name)}>
-                      delete
-                    </button>
-                  </li>
-                );
-              });
-              return exercises;
-            }
-          })}
-        </ol>
+        <ol className="px-4 list-decimal">{workoutThatDay}</ol>
       </div>
     </div>
   );
