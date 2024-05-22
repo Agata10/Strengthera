@@ -10,3 +10,12 @@ export const exercisesOptions = {
     'x-rapidapi-host': 'exercisedb.p.rapidapi.com',
   },
 };
+
+export const exerciseInfoOptions = (exerciseId) => ({
+  method: 'GET',
+  url: `https://exercisedb.p.rapidapi.com/exercises/exercise/${exerciseId}`,
+  headers: {
+    'x-rapidapi-key': import.meta.env.VITE_API_KEY,
+    'x-rapidapi-host': 'exercisedb.p.rapidapi.com',
+  },
+});

@@ -2,26 +2,16 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import Header from './Header';
+import { exerciseInfoOptions } from '../utils/fetchData';
 
 const Exercise = () => {
-  let { exerciseId } = useParams();
+  const { exerciseId } = useParams();
   const [exercise, setExercise] = useState('');
+
   useEffect(() => {
     const getExercise = async () => {
-      const options = {
-        method: 'GET',
-        url: `https://exercisedb.p.rapidapi.com/exercises/exercise/${exerciseId}`,
-        params: {
-          offset: '0',
-          limit: '500',
-        },
-        headers: {
-          'x-rapidapi-key': import.meta.env.VITE_API_KEY,
-          'x-rapidapi-host': 'exercisedb.p.rapidapi.com',
-        },
-      };
       try {
-        const response = await axios.request(options);
+        const response = await axios.request(exerciseInfoOptions(exerciseId));
         console.log(response.data);
         setExercise(response.data);
         return response;
