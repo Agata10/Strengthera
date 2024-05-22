@@ -22,10 +22,17 @@ const reducer = (state, action) => {
     case 'ADD_EXERCISE':
       newState = state.map((d) => {
         if (d.day === action.payload.day) {
-          return {
-            ...d,
-            exercises: [...d.exercises, action.payload.exercise],
-          };
+          const doesExists = d.exercises.find(
+            (e) => e.name === action.payload.exercise.name
+          );
+          if (doesExists) {
+            return { ...d, exercises: [...d.exercises] };
+          } else {
+            return {
+              ...d,
+              exercises: [...d.exercises, action.payload.exercise],
+            };
+          }
         }
         return d;
       });
