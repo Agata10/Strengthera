@@ -1,17 +1,30 @@
 import { useNavigate } from 'react-router-dom';
+import { WorkoutContext } from '../pages/Workouts';
+import { useContext } from 'react';
+
 const Card = ({ exercise }) => {
   const { id, gifUrl, name, bodyPart, target } = exercise;
   const navigate = useNavigate();
+  const { day, dispatch } = useContext(WorkoutContext);
+
   const handleClick = () => {
     navigate(`/exercises/${id}`);
+  };
+
+  const handleAddExercise = () => {
+    dispatch({ type: 'ADD_EXERCISE', payload: { day: day, exercise: name } });
   };
   return (
     <div
       id={id}
-      className="border-t-2 border-blue-400 pt-4 flex flex-col gap-3 font-logo cursor-pointer"
-      onClick={handleClick}
+      className="border-t-2 border-blue-400 pt-4 flex flex-col gap-3 font-logo "
     >
-      <img src={gifUrl} alt={name} />
+      <img
+        src={gifUrl}
+        alt={name}
+        onClick={handleClick}
+        className="cursor-pointer"
+      />
       <h4 className="text-lg font-semibold">
         {name.charAt(0).toUpperCase() + name.slice(1)}
       </h4>
@@ -23,6 +36,9 @@ const Card = ({ exercise }) => {
           {target}
         </button>
       </div>
+      {window.location.href.includes('workouts') && (
+        <button onClick={handleAddExercise}>Add Exercise</button>
+      )}
     </div>
   );
 };
