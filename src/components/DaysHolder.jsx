@@ -49,7 +49,9 @@ const DaysHolder = () => {
   const workoutThatDay = workout.map((days) => {
     if (days.day === day) {
       const exercises = days.exercises.map((exercise) => {
-        if (!exercise) return null;
+        if (!exercise) {
+          return null;
+        }
         return (
           <li key={exercise.name}>
             <span>{exercise.name}</span>
@@ -73,7 +75,11 @@ const DaysHolder = () => {
           </li>
         );
       });
-      return exercises;
+      if (exercises.length === 0) {
+        return 'Rest day';
+      } else {
+        return exercises;
+      }
     }
   });
   return (
