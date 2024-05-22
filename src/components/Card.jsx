@@ -9,7 +9,10 @@ const Card = ({ exercise, day, dispatch }) => {
   };
 
   const handleAddExercise = () => {
-    dispatch({ type: 'ADD_EXERCISE', payload: { day: day, exercise: name } });
+    dispatch({
+      type: 'ADD_EXERCISE',
+      payload: { day: day, exercise: { name: name, sets: 0, reps: 0 } },
+    });
   };
   return (
     <div

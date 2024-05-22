@@ -31,6 +31,20 @@ const reducer = (state, action) => {
       });
       localStorage.setItem('workouts', JSON.stringify(newState));
       return newState;
+    case 'DELETE_EXERCISE':
+      newState = state.map((d) => {
+        if (d.day === action.payload.day) {
+          return {
+            ...d,
+            exercises: d.exercises.filter(
+              (e) => e.name !== action.payload.exercise_name
+            ),
+          };
+        }
+        return d;
+      });
+      localStorage.setItem('workouts', JSON.stringify(newState));
+      return newState;
     default:
       return state;
   }
