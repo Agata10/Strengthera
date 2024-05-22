@@ -42,14 +42,14 @@ const DaysHolder = () => {
       </div>
       <div className="h-3/6">
         <h2>{day}</h2>
-        <ol>
+        <ol className="px-4 list-decimal">
           {workout.map((days) => {
             if (days.day === day) {
               const exercises = days.exercises.map((e) => {
-                if (!e) return;
+                if (!e) return null;
                 return (
                   <li key={e.name}>
-                    <p>{e.name}</p>
+                    <span>{e.name}</span>
                     <input placeholder={e.sets} onChange={handleSets} />
                     <span>sets</span>
                     <input placeholder={e.reps} onChange={handleReps} />
