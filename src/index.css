@@ -4,6 +4,11 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer components {
+    .active {
+        @apply bg-blue-500 !important
+    }
+}
 
 .swiper-pagination {
     position: absolute;

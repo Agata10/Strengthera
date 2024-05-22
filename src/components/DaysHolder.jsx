@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/pagination';
@@ -18,6 +18,7 @@ const days = [
 
 const DaysHolder = () => {
   const { day, setDay, workout, dispatch } = useContext(WorkoutContext);
+  const [activeIndex, setActiveIndex] = useState(0);
 
   const handleGetExericses = (d) => {
     dispatch({ type: 'GET_EXERCISE', payload: { day: d } });
@@ -76,24 +77,28 @@ const DaysHolder = () => {
     }
   });
   return (
-    <div>
+    <div className="mt-10">
       <Swiper
-        className="flex gap-3 w-full mySwiper relative h-16 px-20"
+        className="mySwiper relative h-16 px-20"
         spaceBetween={10}
-        slidesPerView={7}
         breakpoints={breakpoints}
         modules={[Pagination]}
         pagination={{
           clickable: true,
         }}
+        onClick={(swipper) => setActiveIndex(swipper.clickedIndex)}
       >
-        {days.map((d) => (
+        {days.map((d, index) => (
           <SwiperSlide
             key={d}
-            className="cursor-pointer h-10 border-orange-500 border-2 w-24"
+            id={index}
+            className={`${
+              index == activeIndex ? 'active' : ''
+            } cursor-pointer h-11 bg-orange-400 rounded hover:bg-blue-500 w-24 flex items-center justify-center text-slate-50 	`}
             onClick={() => handleGetExericses(d)}
           >
             {d}
+            {console.log(index)}
           </SwiperSlide>
         ))}
       </Swiper>
