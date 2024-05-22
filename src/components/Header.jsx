@@ -9,7 +9,6 @@ const Header = () => {
           Strength<span className="text-blue-400">Era</span>
         </h1>
       </div>
-
       <Nav />
     </div>
   );
