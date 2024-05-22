@@ -1,6 +1,7 @@
 import Header from '../components/Header';
 import back from '../assets/4805.jpg';
 import SearchWrapper from '../components/SearchWrapper';
+
 export const Home = () => {
   return (
     <div>

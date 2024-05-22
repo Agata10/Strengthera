@@ -1,11 +1,8 @@
 import { useNavigate } from 'react-router-dom';
-import { WorkoutContext } from '../pages/Workouts';
-import { useContext } from 'react';
 
-const Card = ({ exercise }) => {
+const Card = ({ exercise, day, dispatch }) => {
   const { id, gifUrl, name, bodyPart, target } = exercise;
   const navigate = useNavigate();
-  const { day, dispatch } = useContext(WorkoutContext);
 
   const handleClick = () => {
     navigate(`/exercises/${id}`);

@@ -1,8 +1,21 @@
 import Card from './Card';
+import { WorkoutContext } from '../pages/Workouts';
+import { useContext } from 'react';
 
 const CardsWrapper = ({ exercises }) => {
+  const context = useContext(WorkoutContext);
+
   const exercisesData = exercises.map((e) => {
-    return <Card key={e.id} exercise={e} />;
+    return context ? (
+      <Card
+        key={e.id}
+        exercise={e}
+        day={context.day}
+        dispatch={context.dispatch}
+      />
+    ) : (
+      <Card key={e.id} exercise={e} />
+    );
   });
 
   return (
