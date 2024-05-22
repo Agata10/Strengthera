@@ -1,9 +1,10 @@
-import { useContext, useState } from 'react';
+import { useContext } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import { Pagination } from 'swiper/modules';
 import { WorkoutContext } from '../pages/Workouts';
+import { breakpoints } from '../utils/breakpoints';
 
 const days = [
   'Monday',
@@ -80,24 +81,7 @@ const DaysHolder = () => {
         className="flex gap-3 w-full mySwiper relative h-16 px-20"
         spaceBetween={10}
         slidesPerView={7}
-        breakpoints={{
-          300: {
-            slidesPerView: 1,
-            spaceBetween: 100,
-          },
-          540: {
-            slidesPerView: 2,
-            spaceBetween: 80,
-          },
-          768: {
-            slidesPerView: 3,
-            spaceBetween: 80,
-          },
-          1024: {
-            slidesPerView: 5,
-            spaceBetween: 80,
-          },
-        }}
+        breakpoints={breakpoints}
         modules={[Pagination]}
         pagination={{
           clickable: true,
