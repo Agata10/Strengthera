@@ -49,7 +49,7 @@ const WorkoutPerDay = () => {
               />
               <span className="mr-4 md:mr-8">sets</span>
               <input
-                className="w-4 md:w-6 text-left placeholder:text-slate-800 rounded-md hover:shadow-sm hover:shadow-blue-400"
+                className="w-5 md:w-6 text-left placeholder:text-slate-800 rounded-md hover:shadow-sm hover:shadow-blue-400"
                 placeholder={exercise.reps}
                 onBlur={(e) =>
                   handleReps(day, exercise.name, Number(e.target.value))

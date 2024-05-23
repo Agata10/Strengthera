@@ -1,9 +1,20 @@
 import CardsWrapper from './CardsWrapper';
 import SearchBar from './SearchBar';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { Hourglass } from 'react-loader-spinner';
 
 const SearchWrapper = () => {
   const [exercises, setExercises] = useState(null);
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    if (exercises !== null) {
+      console.log('load');
+      setLoading(true);
+      const timer = setTimeout(() => setLoading(false), 1000);
+      return () => clearTimeout(timer);
+    }
+  }, [exercises]);
 
   const loaded = () => {
     if (exercises.length === 0) {
@@ -25,7 +36,21 @@ const SearchWrapper = () => {
   return (
     <div>
       <SearchBar setExercises={setExercises} />
-      {exercises ? loaded() : ''}
+      {loading ? (
+        <div className="flex justify-center mx-auto mt-10">
+          <Hourglass
+            visible={true}
+            height="80"
+            width="80"
+            ariaLabel="hourglass-loading"
+            wrapperStyle={{}}
+            wrapperClass=""
+            colors={['#306cce', '#72a1ed']}
+          />
+        </div>
+      ) : (
+        exercises && loaded()
+      )}
     </div>
   );
 };
