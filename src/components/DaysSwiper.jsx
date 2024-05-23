@@ -41,7 +41,6 @@ const DaysSwiper = ({ setDay, dispatch }) => {
           onClick={() => handleGetExericses(d)}
         >
           {d}
-          {console.log(index)}
         </SwiperSlide>
       ))}
     </Swiper>
