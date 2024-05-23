@@ -1,6 +1,7 @@
 import Header from '../components/Header';
 import back from '../assets/4805.jpg';
 import SearchWrapper from '../components/SearchWrapper';
+import BodyParts from '../components/BodyParts';
 
 export const Home = () => {
   return (
@@ -12,6 +13,7 @@ export const Home = () => {
           Workout
         </h2>
       </div>
+      <BodyParts />
       <SearchWrapper />
     </div>
   );

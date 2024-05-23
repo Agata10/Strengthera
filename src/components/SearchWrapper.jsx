@@ -1,13 +1,16 @@
+import { ExercisesContext } from '../App';
 import CardsWrapper from './CardsWrapper';
 import SearchBar from './SearchBar';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { Hourglass } from 'react-loader-spinner';
 
 const SearchWrapper = () => {
-  const [exercises, setExercises] = useState(null);
+  const context = useContext(ExercisesContext);
+  const { exercises, setExercises } = context;
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
+    console.log(exercises);
     if (exercises !== null) {
       setLoading(true);
       const timer = setTimeout(() => setLoading(false), 1500);
