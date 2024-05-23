@@ -18,12 +18,12 @@ const SearchWrapper = () => {
   const loaded = () => {
     if (exercises.length === 0) {
       return (
-        <div className="text-center w-full mt-20">0 exercises founded...</div>
+        <div className="text-center w-full my-20">0 exercises founded...</div>
       );
     }
     if (exercises.find((e) => e.error)) {
       return (
-        <div className="text-center w-full mt-20">
+        <div className="text-center w-full my-20">
           Problem with fetching data...
         </div>
       );
@@ -36,7 +36,7 @@ const SearchWrapper = () => {
     <div>
       <SearchBar setExercises={setExercises} />
       {loading ? (
-        <div className="flex justify-center mx-auto mt-10">
+        <div className="flex justify-center mx-auto my-10">
           <Hourglass
             visible={true}
             height="80"
