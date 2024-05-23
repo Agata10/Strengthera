@@ -10,7 +10,6 @@ const SearchWrapper = () => {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    console.log(exercises);
     if (exercises !== null) {
       setLoading(true);
       const timer = setTimeout(() => setLoading(false), 1500);

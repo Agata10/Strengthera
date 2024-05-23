@@ -1,23 +1,26 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import axios from 'axios';
+import { bodyPartsListOptions } from '../utils/fetchData';
 
-const options = {
-  method: 'GET',
-  url: 'https://exercisedb.p.rapidapi.com/exercises/bodyPartList',
-  headers: {
-    'x-rapidapi-key': 'bc9e5af09dmsh6e5791e1d29ebb3p170a7bjsne829d9bcae2d',
-    'x-rapidapi-host': 'exercisedb.p.rapidapi.com',
-  },
-};
-
-try {
-  const response = await axios.request(options);
-  console.log(response.data);
-} catch (error) {
-  console.error(error);
-}
 const BodyParts = () => {
-  useEffect(() => {});
+  const [bodyParts, setBodyParts] = useState(
+    null || JSON.parse(localStorage.getItem('bodyParts'))
+  );
+  useEffect(() => {
+    if (!bodyParts) {
+      const getBodyPartsList = async () => {
+        try {
+          const response = await axios.request(bodyPartsListOptions);
+          setBodyParts(bodyParts);
+          localStorage.setItem('bodyParts', JSON.stringify(response.data));
+        } catch (error) {
+          console.error(error);
+        }
+      };
+      getBodyPartsList();
+    }
+  }, [bodyParts]);
+
   return <div>BodyParts</div>;
 };
 
