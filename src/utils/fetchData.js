@@ -23,6 +23,12 @@ export const bodyPartsListOptions = {
   headers: options.headers,
 };
 
+export const bodyPartExercisesOptions = (part) => ({
+  method: options.method,
+  url: options.url + `/bodyPart/${part}`,
+  headers: options.headers,
+});
+
 export const exerciseInfoOptions = (exerciseId) => ({
   method: options.method,
   url: options.url + `/exercise/${exerciseId}`,

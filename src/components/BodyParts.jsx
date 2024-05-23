@@ -1,9 +1,13 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
+import { ExercisesContext } from '../App';
 import axios from 'axios';
-import { bodyPartsListOptions } from '../utils/fetchData';
+import {
+  bodyPartExercisesOptions,
+  bodyPartsListOptions,
+} from '../utils/fetchData';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { breakpoints } from '../utils/breakpoints';
-import { Virtual, Navigation, Pagination } from 'swiper/modules';
+import { Navigation } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/navigation';
 
@@ -12,6 +16,22 @@ const BodyParts = () => {
     null || JSON.parse(localStorage.getItem('bodyParts'))
   );
   const [bodyPart, setBodyPart] = useState('back');
+  const context = useContext(ExercisesContext);
+  const { exercises, setExercises } = context;
+
+  useEffect(() => {
+    const getBodyPartsList = async () => {
+      try {
+        // const response = await axios.request(
+        //   bodyPartExercisesOptions(bodyPart)
+        // );
+        setExercises(response.data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    getBodyPartsList();
+  }, [bodyPart, setExercises]);
 
   useEffect(() => {
     if (!bodyParts) {
@@ -27,6 +47,7 @@ const BodyParts = () => {
       getBodyPartsList();
     }
   }, [bodyParts]);
+
   const bodyPartSlide = bodyParts.map((part) => {
     return (
       <SwiperSlide
@@ -45,11 +66,10 @@ const BodyParts = () => {
       spaceBetween={10}
       breakpoints={breakpoints}
       modules={[Navigation]}
-      centeredSlides={true}
       navigation={true}
       onClick={(swipper) => setBodyPart(swipper.clickedSlide.id)}
     >
-      {console.log(bodyPart)}
+      {console.log(exercises)}
       {bodyPartSlide}
     </Swiper>
   );
