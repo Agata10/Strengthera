@@ -9,9 +9,8 @@ const SearchWrapper = () => {
 
   useEffect(() => {
     if (exercises !== null) {
-      console.log('load');
       setLoading(true);
-      const timer = setTimeout(() => setLoading(false), 1000);
+      const timer = setTimeout(() => setLoading(false), 1500);
       return () => clearTimeout(timer);
     }
   }, [exercises]);

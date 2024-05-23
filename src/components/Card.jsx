@@ -25,14 +25,14 @@ const Card = ({ exercise, day, dispatch }) => {
         onClick={handleClick}
         className="cursor-pointer"
       />
-      <h4 className="text-lg font-semibold">
+      <h4 className="text-md md:text-lg font-semibold">
         {name.charAt(0).toUpperCase() + name.slice(1)}
       </h4>
       <div className="flex gap-2">
-        <button className="bg-orange-600 px-3 py-1 rounded-full text-sm cursor-default">
+        <button className="bg-orange-600 px-3 py-1 rounded-full text-xs md:text-sm cursor-default">
           {bodyPart}
         </button>
-        <button className="bg-orange-400 px-2 rounded-full text-sm cursor-default">
+        <button className="bg-orange-400 px-2 rounded-full text-xs md:text-sm cursor-default">
           {target}
         </button>
       </div>
