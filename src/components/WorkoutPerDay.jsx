@@ -1,29 +1,11 @@
-import { useContext, useState } from 'react';
-import { Swiper, SwiperSlide } from 'swiper/react';
+import { useContext } from 'react';
 import 'swiper/css';
 import 'swiper/css/pagination';
-import { Pagination } from 'swiper/modules';
 import { WorkoutContext } from '../pages/Workouts';
-import { breakpoints } from '../utils/breakpoints';
+import DaysSwiper from './DaysSwiper';
 
-const days = [
-  'Monday',
-  'Tuesday',
-  'Wednesday',
-  'Thursday',
-  'Friday',
-  'Saturday',
-  'Sunday',
-];
-
-const DaysHolder = () => {
+const WorkoutPerDay = () => {
   const { day, setDay, workout, dispatch } = useContext(WorkoutContext);
-  const [activeIndex, setActiveIndex] = useState(0);
-
-  const handleGetExericses = (d) => {
-    dispatch({ type: 'GET_EXERCISE', payload: { day: d } });
-    setDay(d);
-  };
 
   const handleDelete = (day, name) => {
     dispatch({
@@ -54,26 +36,26 @@ const DaysHolder = () => {
       const exercises = days.exercises.map((exercise) => {
         return (
           <li key={exercise.name}>
-            <div className="flex">
-              <p className="mr-8 w-56">
+            <div className="flex items-center">
+              <p className="mr-3 md:mr-8 w-4/6 md:w-56">
                 {exercise.name.charAt(0).toUpperCase() + exercise.name.slice(1)}
               </p>
               <input
-                className="w-6 text-left placeholder:text-slate-800"
+                className="w-4 md:w-6  text-left placeholder:text-slate-800"
                 placeholder={exercise.sets}
                 onBlur={(e) =>
                   handleSets(day, exercise.name, Number(e.target.value))
                 }
               />
-              <span className="mr-8">sets</span>
+              <span className="mr-4 md:mr-8">sets</span>
               <input
-                className="w-6 text-left placeholder:text-slate-800"
+                className="w-4 md:w-6 text-left placeholder:text-slate-800"
                 placeholder={exercise.reps}
                 onBlur={(e) =>
                   handleReps(day, exercise.name, Number(e.target.value))
                 }
               />
-              <span className="mr-8">reps</span>
+              <span className="mr-4 md:mr-8">reps</span>
               <button
                 className="flex items-center justify-center"
                 onClick={() => handleDelete(day, exercise.name)}
@@ -102,33 +84,10 @@ const DaysHolder = () => {
   });
   return (
     <div className="mt-10">
-      <Swiper
-        className="mySwiper relative h-16 px-20"
-        spaceBetween={10}
-        breakpoints={breakpoints}
-        modules={[Pagination]}
-        pagination={{
-          clickable: true,
-        }}
-        onClick={(swipper) => setActiveIndex(swipper.clickedIndex)}
-      >
-        {days.map((d, index) => (
-          <SwiperSlide
-            key={d}
-            id={index}
-            className={`${
-              index == activeIndex ? 'active' : ''
-            } cursor-pointer h-11 bg-orange-400 rounded hover:bg-blue-500 w-24 flex items-center justify-center text-slate-50 	`}
-            onClick={() => handleGetExericses(d)}
-          >
-            {d}
-            {console.log(index)}
-          </SwiperSlide>
-        ))}
-      </Swiper>
-      <div className="w-10/12 mx-auto my-10 p-5 shadow shadow-slate-300 rounded-sm border-b-2 border-blue-400">
+      <DaysSwiper dispatch={dispatch} setDay={setDay} />
+      <div className="w-11/12 md:w-10/12 mx-auto my-10 p-5 shadow shadow-slate-300 rounded-sm border-b-2 border-blue-400">
         <h2 className="text-2xl">{day}</h2>
-        <ol className="px-4 list-decimal flex flex-col gap-1 mt-4 text-md pl-10">
+        <ol className="px-4 list-decimal flex flex-col gap-1 mt-4 text-md pl-5 md:pl-10">
           {workoutThatDay}
         </ol>
       </div>
@@ -136,4 +95,4 @@ const DaysHolder = () => {
   );
 };
 
-export default DaysHolder;
+export default WorkoutPerDay;

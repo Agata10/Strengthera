@@ -1,8 +1,8 @@
-import DaysHolder from '../components/DaysHolder';
 import Header from '../components/Header';
 import SearchWrapper from '../components/SearchWrapper';
 import { createContext, useEffect, useReducer, useState } from 'react';
 import { reducer } from '../utils/reducer';
+import WorkoutPerDay from '../components/WorkoutPerDay';
 
 const initialState = JSON.parse(localStorage.getItem('workouts')) || [
   { day: 'Monday', exercises: [] },
@@ -31,7 +31,7 @@ const Workouts = () => {
     <div>
       <Header />
       <WorkoutContext.Provider value={{ day, setDay, workout, dispatch }}>
-        <DaysHolder />
+        <WorkoutPerDay />
         <SearchWrapper />
       </WorkoutContext.Provider>
     </div>
