@@ -21,7 +21,9 @@ const SearchBar = ({ setExercises }) => {
         return filterData;
       }
     } catch (error) {
+      setExercises((prev) => [...prev, { error: 'No data fetched' }]);
       console.error(error);
+      return error;
     }
   };
 

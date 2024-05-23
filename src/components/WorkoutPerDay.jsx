@@ -41,7 +41,7 @@ const WorkoutPerDay = () => {
                 {exercise.name.charAt(0).toUpperCase() + exercise.name.slice(1)}
               </p>
               <input
-                className="w-4 md:w-6  text-left placeholder:text-slate-800"
+                className="w-4 md:w-6  text-left placeholder:text-slate-800 rounded-md hover:shadow-sm hover:shadow-blue-400"
                 placeholder={exercise.sets}
                 onBlur={(e) =>
                   handleSets(day, exercise.name, Number(e.target.value))
@@ -49,7 +49,7 @@ const WorkoutPerDay = () => {
               />
               <span className="mr-4 md:mr-8">sets</span>
               <input
-                className="w-4 md:w-6 text-left placeholder:text-slate-800"
+                className="w-4 md:w-6 text-left placeholder:text-slate-800 rounded-md hover:shadow-sm hover:shadow-blue-400"
                 placeholder={exercise.reps}
                 onBlur={(e) =>
                   handleReps(day, exercise.name, Number(e.target.value))
