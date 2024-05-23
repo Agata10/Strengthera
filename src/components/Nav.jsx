@@ -6,7 +6,7 @@ const Nav = () => {
         <Link to="/">Home</Link>
       </li>
       <li className="hover:underline underline-offset-4 decoration-orange-600">
-        <Link to="workouts">Workouts</Link>
+        <Link to="/workouts">Workouts</Link>
       </li>
       <li className="hover:underline underline-offset-4 decoration-orange-600">
         <Link to="/exercises">Exercises</Link>
