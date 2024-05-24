@@ -6,7 +6,7 @@ import Footer from '../components/Footer';
 
 export const Home = () => {
   return (
-    <div>
+    <div className="h-full w-full">
       <Header />
       <div className="relative w-full flex justify-center items-center">
         <img src={back} className="w-10/12"></img>

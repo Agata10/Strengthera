@@ -62,7 +62,7 @@ const BodyParts = () => {
   });
   return (
     <Swiper
-      className="mySwiper  w-8/12 md:w-10/12 h-16 px-10 md:px-20 my-20"
+      className="mySwiper w-8/12 md:w-10/12 px-10 md:px-20 my-20"
       spaceBetween={10}
       breakpoints={breakpoints}
       modules={[Navigation]}

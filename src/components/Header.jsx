@@ -4,8 +4,8 @@ import Nav from './Nav';
 const Header = () => {
   const [visible, setVisible] = useState(false);
   return (
-    <div className="flex flex-col md:flex-row justify-between items-center px-10 md:px-20 md:h-20 w-full">
-      <div className="flex justify-between w-full">
+    <div className="flex flex-col md:flex-row justify-between items-center pt-5 md:pt-10 pb-5 md:pb-12 md:px-20 md:h-20 w-full bg-slate-50">
+      <div className="flex justify-between w-full px-10 md:px-0">
         <div className="flex gap-3 justify-center">
           <img
             src={dumbell}

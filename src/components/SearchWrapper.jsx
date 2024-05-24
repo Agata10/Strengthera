@@ -35,7 +35,7 @@ const SearchWrapper = () => {
   };
 
   return (
-    <div>
+    <>
       <SearchBar setExercises={setExercises} />
       {loading ? (
         <div className="flex justify-center mx-auto my-10">
@@ -52,7 +52,7 @@ const SearchWrapper = () => {
       ) : (
         exercises && loaded()
       )}
-    </div>
+    </>
   );
 };
 
