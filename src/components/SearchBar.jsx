@@ -34,7 +34,7 @@ const SearchBar = ({ setExercises }) => {
   }, [search]);
 
   return (
-    <div className="w-full flex justify-center items-center bg-slate-100 h-20">
+    <div className="w-full flex justify-center items-center bg-slate-100 h-20 mt-16">
       <form
         className="flex gap-6 w-full justify-center h-8"
         onSubmit={(e) => {
