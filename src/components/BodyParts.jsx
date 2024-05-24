@@ -17,10 +17,26 @@ const BodyParts = () => {
   );
   const [bodyPart, setBodyPart] = useState('back');
   const context = useContext(ExercisesContext);
-  const { exercises, setExercises } = context;
+  const { setExercises } = context;
+  const [images, setImages] = useState({});
 
   useEffect(() => {
-    const getBodyPartsList = async () => {
+    if (Object.keys(images).length === 0) {
+      const importImages = async () => {
+        const loadedImages = {};
+        for (const partName of bodyParts) {
+          const imagePath = await import(`../assets/bodyParts/${partName}.png`);
+          loadedImages[partName] = imagePath.default;
+        }
+        setImages(loadedImages);
+      };
+
+      importImages();
+    }
+  }, [bodyParts, images]);
+
+  useEffect(() => {
+    const getExercises = async () => {
       try {
         const response = await axios.request(
           bodyPartExercisesOptions(bodyPart)
@@ -30,7 +46,7 @@ const BodyParts = () => {
         console.error(error);
       }
     };
-    getBodyPartsList();
+    getExercises();
   }, [bodyPart, setExercises]);
 
   useEffect(() => {
@@ -55,7 +71,7 @@ const BodyParts = () => {
         id={part}
         className="cursor-pointer flex flex-col justify-center items-center"
       >
-        <img src="" alt={part} />
+        <img src={images[part]} alt={part} className="hover:scale-105" />
         <h4>{part}</h4>
       </SwiperSlide>
     );
@@ -69,7 +85,6 @@ const BodyParts = () => {
       navigation={true}
       onClick={(swipper) => setBodyPart(swipper.clickedSlide.id)}
     >
-      {console.log(exercises)}
       {bodyPartSlide}
     </Swiper>
   );
