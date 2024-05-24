@@ -21,19 +21,19 @@ const BodyParts = () => {
   const [images, setImages] = useState({});
 
   useEffect(() => {
-    if (Object.keys(images).length === 0) {
-      const importImages = async () => {
-        const loadedImages = {};
-        for (const partName of bodyParts) {
-          const imagePath = await import(`../assets/bodyParts/${partName}.png`);
-          loadedImages[partName] = imagePath.default;
+    if (!bodyParts) {
+      const getBodyPartsList = async () => {
+        try {
+          const response = await axios.request(bodyPartsListOptions);
+          setBodyParts(bodyParts);
+          localStorage.setItem('bodyParts', JSON.stringify(response.data));
+        } catch (error) {
+          console.error(error);
         }
-        setImages(loadedImages);
       };
-
-      importImages();
+      getBodyPartsList();
     }
-  }, [bodyParts, images]);
+  }, [bodyParts]);
 
   useEffect(() => {
     const getExercises = async () => {
@@ -50,32 +50,34 @@ const BodyParts = () => {
   }, [bodyPart, setExercises]);
 
   useEffect(() => {
-    if (!bodyParts) {
-      const getBodyPartsList = async () => {
-        try {
-          const response = await axios.request(bodyPartsListOptions);
-          setBodyParts(bodyParts);
-          localStorage.setItem('bodyParts', JSON.stringify(response.data));
-        } catch (error) {
-          console.error(error);
+    if (Object.keys(images).length === 0 && bodyParts) {
+      const importImages = async () => {
+        const loadedImages = {};
+        for (const partName of bodyParts) {
+          const imagePath = await import(`../assets/bodyParts/${partName}.png`);
+          loadedImages[partName] = imagePath.default;
         }
+        setImages(loadedImages);
       };
-      getBodyPartsList();
-    }
-  }, [bodyParts]);
 
-  const bodyPartSlide = bodyParts.map((part) => {
-    return (
-      <SwiperSlide
-        key={crypto.randomUUID()}
-        id={part}
-        className="cursor-pointer flex flex-col justify-center items-center"
-      >
-        <img src={images[part]} alt={part} className="hover:scale-105" />
-        <h4>{part}</h4>
-      </SwiperSlide>
-    );
-  });
+      importImages();
+    }
+  }, [bodyParts, images]);
+
+  const bodyPartSlide =
+    bodyParts &&
+    bodyParts.map((part) => {
+      return (
+        <SwiperSlide
+          key={crypto.randomUUID()}
+          id={part}
+          className="cursor-pointer flex flex-col justify-center items-center"
+        >
+          <img src={images[part]} alt={part} className="hover:scale-105" />
+          <h4>{part}</h4>
+        </SwiperSlide>
+      );
+    });
   return (
     <Swiper
       className="mySwiper w-8/12 md:w-10/12 px-10 md:px-20 my-20"

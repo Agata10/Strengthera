@@ -54,3 +54,5 @@ There are possibilities to expand app for more features like:
    <img src="./images/screen.png" width="800" height="500"> -->
 
 ## Site link
+
+https://strengthera.netlify.app

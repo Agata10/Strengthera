@@ -31,7 +31,7 @@ const SearchBar = ({ setExercises }) => {
       }
     };
     getExercises();
-  }, [search]);
+  }, [search, searchInput, setExercises]);
 
   return (
     <div className="w-full flex justify-center items-center bg-slate-100 h-20 mt-16">
