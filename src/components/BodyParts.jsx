@@ -22,9 +22,9 @@ const BodyParts = () => {
   useEffect(() => {
     const getBodyPartsList = async () => {
       try {
-        // const response = await axios.request(
-        //   bodyPartExercisesOptions(bodyPart)
-        // );
+        const response = await axios.request(
+          bodyPartExercisesOptions(bodyPart)
+        );
         setExercises(response.data);
       } catch (error) {
         console.error(error);

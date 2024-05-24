@@ -30,12 +30,12 @@ const Exercise = () => {
   }, [exerciseId]);
 
   return (
-    <div className="flex justify-center w-9/12 mt-20 mx-auto gap-8">
+    <div className="flex justify-center w-9/12 mt-20 mx-auto gap-8 min-h-full mb-20">
       {loading ? (
         <Hourglass
           visible={true}
-          height="80"
-          width="80"
+          height="60"
+          width="60"
           ariaLabel="hourglass-loading"
           wrapperStyle={{}}
           wrapperClass=""
@@ -43,24 +43,26 @@ const Exercise = () => {
         />
       ) : (
         exercise && (
-          <div className="flex w-full mx-auto gap-8">
+          <div className="flex w-10/12 h-4/6 mx-auto gap-8">
             <img src={exercise.gifUrl} alt={exercise.name} />
-            <div className="flex flex-col ">
-              <h4 className="text-lg font-semibold">
+            <div className="flex flex-col">
+              <h4 className="text-2xl font-semibold">
                 {exercise.name.charAt(0).toUpperCase() + exercise.name.slice(1)}
               </h4>
               <div className="flex flex-col gap-2">
-                <ul>
+                <ol className="list-decimal pb-2 pl-4">
                   {exercise.instructions.map((i, index) => {
                     return <li key={index}>{i}</li>;
                   })}
-                </ul>
-                <button className="bg-orange-600 px-3 py-1 rounded-full text-sm cursor-default">
-                  {exercise.bodyPart}
-                </button>
-                <button className="bg-orange-400 px-2 rounded-full text-sm cursor-default">
-                  {exercise.target}
-                </button>
+                </ol>
+                <div>
+                  <button className="bg-orange-600 px-3 py-2 rounded-full text-sm cursor-default w-1/6">
+                    {exercise.bodyPart}
+                  </button>
+                  <button className="bg-orange-400 px-2 py-2 rounded-full text-sm cursor-default w-1/6">
+                    {exercise.target}
+                  </button>
+                </div>
               </div>
             </div>
           </div>
