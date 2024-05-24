@@ -3,6 +3,7 @@ import SearchWrapper from '../components/SearchWrapper';
 import { createContext, useEffect, useReducer, useState } from 'react';
 import { reducer } from '../utils/reducer';
 import WorkoutPerDay from '../components/WorkoutPerDay';
+import Footer from '../components/Footer';
 
 const initialState = JSON.parse(localStorage.getItem('workouts')) || [
   { day: 'Monday', exercises: [] },
@@ -34,6 +35,7 @@ const Workouts = () => {
         <WorkoutPerDay />
         <SearchWrapper />
       </WorkoutContext.Provider>
+      <Footer />
     </div>
   );
 };

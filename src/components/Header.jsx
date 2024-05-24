@@ -10,7 +10,7 @@ const Header = () => {
           <img
             src={dumbell}
             alt="logo"
-            className="w-10 h-10 mt-2 md:w-16 md:h-16"
+            className="w-10 h-10 mt-2 md:w-14 md:h-14"
           />
           <h1 className="text-2xl md:text-4xl font-logo relative right-2 top-3 md:top-5 text-orange-400">
             Strength<span className="text-blue-400">Era</span>
