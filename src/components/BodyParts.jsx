@@ -13,7 +13,7 @@ import 'swiper/css/navigation';
 
 const BodyParts = () => {
   const [bodyParts, setBodyParts] = useState(
-    null || JSON.parse(localStorage.getItem('bodyParts'))
+    JSON.parse(localStorage.getItem('bodyParts')) || null
   );
   const [bodyPart, setBodyPart] = useState('back');
   const context = useContext(ExercisesContext);
@@ -25,7 +25,7 @@ const BodyParts = () => {
       const getBodyPartsList = async () => {
         try {
           const response = await axios.request(bodyPartsListOptions);
-          setBodyParts(bodyParts);
+          setBodyParts(response.data);
           localStorage.setItem('bodyParts', JSON.stringify(response.data));
         } catch (error) {
           console.error(error);
