@@ -12,17 +12,17 @@ const Exercise = () => {
   useEffect(() => {
     if (exerciseId) {
       const getExercise = async () => {
-        try {
-          setLoading(true);
-          const response = await axios.request(exerciseInfoOptions(exerciseId));
-          console.log(response.data);
-          setExercise(response.data);
-          return response;
-        } catch (error) {
-          console.error(error);
-        } finally {
-          setTimeout(() => setLoading(false), 1300);
-        }
+        // try {
+        //   setLoading(true);
+        //   const response = await axios.request(exerciseInfoOptions(exerciseId));
+        //   console.log(response.data);
+        //   setExercise(response.data);
+        //   return response;
+        // } catch (error) {
+        //   console.error(error);
+        // } finally {
+        //   setTimeout(() => setLoading(false), 1300);
+        // }
       };
 
       getExercise();

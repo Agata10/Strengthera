@@ -10,6 +10,8 @@ import { breakpoints } from '../utils/breakpoints';
 import { Navigation } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/navigation';
+import data from '../assets/bodyParts';
+import exercises from '../assets/exercisesData';
 
 const BodyParts = () => {
   const [bodyParts, setBodyParts] = useState(
@@ -23,13 +25,14 @@ const BodyParts = () => {
   useEffect(() => {
     if (!bodyParts) {
       const getBodyPartsList = async () => {
-        try {
-          const response = await axios.request(bodyPartsListOptions);
-          setBodyParts(response.data);
-          localStorage.setItem('bodyParts', JSON.stringify(response.data));
-        } catch (error) {
-          console.error(error);
-        }
+        // try {
+        //   const response = await axios.request(bodyPartsListOptions);
+        //   setBodyParts(response.data);
+        //   localStorage.setItem('bodyParts', JSON.stringify(response.data));
+        // } catch (error) {
+        //   console.error(error);
+        // }
+        setBodyParts(data);
       };
       getBodyPartsList();
     }
@@ -38,10 +41,12 @@ const BodyParts = () => {
   useEffect(() => {
     const getExercises = async () => {
       try {
-        const response = await axios.request(
-          bodyPartExercisesOptions(bodyPart)
-        );
-        setExercises(response.data);
+        // const response = await axios.request(
+        //   bodyPartExercisesOptions(bodyPart)
+        // );
+        // setExercises(response.data);
+        // console.log(response.data);
+        setExercises(exercises);
       } catch (error) {
         console.error(error);
       }
