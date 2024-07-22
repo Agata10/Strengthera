@@ -1,7 +1,6 @@
 import Card from './Card';
 import { WorkoutContext } from '../pages/Workouts';
-import { useContext, useState } from 'react';
-import ReactPaginate from 'react-paginate';
+import { useContext } from 'react';
 
 const CardsWrapper = ({ currentItems }) => {
   {

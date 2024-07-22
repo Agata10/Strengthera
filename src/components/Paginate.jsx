@@ -1,5 +1,4 @@
 import CardsWrapper from './CardsWrapper';
-import { useContext, useEffect, useState } from 'react';
 import ReactPaginate from 'react-paginate';
 const itemsPerPage = 12;
 
