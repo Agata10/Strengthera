@@ -41,3 +41,13 @@ body {
 #root {
     height: 100%;
 }
+
+.page-item .page-link {
+    color: rgb(59 130 246);
+}
+
+.page-item.active .page-link {
+    background-color: rgb(59 130 246);
+    border-color: rgb(59 130 246);
+    color: white;
+}
