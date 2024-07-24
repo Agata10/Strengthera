@@ -79,7 +79,9 @@ const BodyParts = () => {
           className="cursor-pointer flex flex-col justify-center items-center"
         >
           <img src={images[part]} alt={part} className="hover:scale-105" />
-          <h4>{part}</h4>
+          <h4 className="font-workout text-sm text-blue-500 mt-2 opacity-70">
+            {part === 'waist' ? 'ABS' : part.toUpperCase()}
+          </h4>
         </SwiperSlide>
       );
     });
