@@ -10,18 +10,18 @@ const SearchBar = ({ setExercises }) => {
     const getExercises = async () => {
       try {
         if (searchInput.length > 0) {
-          // const response = await axios.request(exercisesOptions);
-          // const filterData = response.data.filter(
-          //   (exercise) =>
-          //     exercise.name.includes(searchInput) ||
-          //     exercise.bodyPart.includes(searchInput) ||
-          //     exercise.target.includes(searchInput) ||
-          //     exercise.equipment.includes(searchInput)
-          // );
-          // setExercises(filterData);
-          // setSearch(false);
-          // setSearchInput('');
-          // return filterData;
+          const response = await axios.request(exercisesOptions);
+          const filterData = response.data.filter(
+            (exercise) =>
+              exercise.name.includes(searchInput) ||
+              exercise.bodyPart.includes(searchInput) ||
+              exercise.target.includes(searchInput) ||
+              exercise.equipment.includes(searchInput)
+          );
+          setExercises(filterData);
+          setSearch(false);
+          setSearchInput('');
+          return filterData;
         }
       } catch (error) {
         setExercises((prev) => [...prev, { error: 'No data fetched' }]);
